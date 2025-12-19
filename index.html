@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>幸福教養|模組1v7.2</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!-- =========================
+
+幸福教養｜模組1｜m1v7.2
+
+滿版｜字體加倍放大｜急救秒數突出｜換一句更大字
+
+(CodePen / GitHub Pages 皆可用)
+
+========================= -->
+
+<div class="app" id="app">
+
+  <header class="header">
+
+    <div class="header-left">
+
+      <div class="title">幸福教養｜模組1</div>
+
+      <div class="subtitle">大人先穩：急救 × 錦囊 × 每日微練功</div>
+
+    </div>
+
+    <a class="home-btn" id="btnHome" href="#" aria-label="回到首頁">回到首頁</a>
+
+  </header>
+
+  <main class="main">
+
+    <div class="container">
+
+      <!-- 年齡分流 -->
+
+      <section class="agebar">
+
+        <div class="age-label">年齡分流</div>
+
+        <select id="ageSelect" aria-label="年齡分流">
+
+          <option value="preschool">3–6 幼兒</option>
+
+          <option value="child">7–12 兒童</option>
+
+          <option value="teen" selected>13–18 青少年</option>
+
+          <option value="adult">大人（家長/老師）</option>
+
+        </select>
+
+      </section>
+
+      <!-- Tabs -->
+
+      <nav class="tabs" aria-label="功能分頁">
+
+        <button class="tab active" data-tab="firstaid" type="button"><span class="icon">⚡</span> 急救</button>
+
+        <button class="tab" data-tab="kit" type="button"><span class="icon">🧰</span> 錦囊</button>
+
+        <button class="tab" data-tab="daily" type="button"><span class="icon">✅</span> 每日</button>
+
+        <button class="tab" data-tab="settings" type="button"><span class="icon">⚙️</span> 設定</button>
+
+      </nav>
+
+      <!-- 主卡 -->
+
+      <section class="card big" id="panel-firstaid">
+
+        <h2>急救｜先把大人穩住</h2>
+
+        <p class="desc">
+
+          先穩住呼吸，再穩住語氣。（需要時可切到「錦囊」拿一句話走。）
+
+        </p>
+
+        <div class="highlight" role="status" aria-live="polite">
+
+          <div><strong>狀態：</strong><span id="statusText">待機</span></div>
+
+          <div class="badge">
+
+            <span class="badge-label">秒數</span>
+
+            <span class="badge-value" id="secValue">0</span>
+
+          </div>
+
+        </div>
+
+        <div class="grid2">
+
+          <div class="mini">
+
+            <div class="mini-label">階段</div>
+
+            <div class="mini-value" id="phaseText">準備</div>
+
+          </div>
+
+          <div class="mini">
+
+            <div class="mini-label">回合</div>
+
+            <div class="mini-value"><span id="roundNow">0</span>/<span id="roundTotal">3</span></div>
+
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <label class="form-label" for="roundInput">輸入回合數（建議 2–5）</label>
+
+          <select id="roundInput">
+
+            <option value="2">2</option>
+
+            <option value="3" selected>3</option>
+
+            <option value="4">4</option>
+
+            <option value="5">5</option>
+
+          </select>
+
+        </div>
+
+        <div class="btn-row">
+
+          <button class="btn primary" id="btnStart" type="button">開始（吸4吐6）</button>
+
+          <button class="btn" id="btnStop" type="button">停止</button>
+
+        </div>
+
+        <hr class="divider"/>
+
+        <h3>先穩住，再開口（救場一句）</h3>
+
+        <p class="desc">按一下「換一句」拿一句能用的；再按「複製」直接帶走。</p>
+
+        <div class="phrase-box" id="phraseBox">
+
+          <div class="phrase-tag">現在就說這句</div>
+
+          <div class="phrase-text" id="phraseText">（請按「換一句」）</div>
+
+        </div>
+
+        <div class="btn-row">
+
+          <button class="btn primary" id="btnNewPhrase" type="button">換一句</button>
+
+          <button class="btn" id="btnCopyPhrase" type="button">複製</button>
+
+        </div>
+
+        <p class="tiny" id="copyHint"></p>
+
+      </section>
+
+      <!-- 錦囊 -->
+
+      <section class="card big hidden" id="panel-kit">
+
+        <h2>錦囊｜不打不罵不氣</h2>
+
+        <p class="desc">你要做的不是「贏」，而是「把系統帶回穩定」。</p>
+
+        <div class="kit-list" id="kitList"></div>
+
+        <div class="note">
+
+          <div class="note-title">一個原則</div>
+
+          <div class="note-text">先處理「情緒」，再處理「事情」。情緒沒穩，事情只會更亂。</div>
+
+        </div>
+
+      </section>
+
+      <!-- 每日 -->
+
+      <section class="card big hidden" id="panel-daily">
+
+        <h2>每日微練功｜30 秒就好</h2>
+
+        <p class="desc">每天做一點點，才會在需要的時候「自動跑出來」。</p>
+
+        <div class="daily-points">
+
+          <div class="points">
+
+            <span class="points-label">累積點數</span>
+
+            <span class="points-value" id="pointsValue">0</span>
+
+          </div>
+
+          <button class="btn danger small" id="btnResetPoints" type="button">清空點數</button>
+
+        </div>
+
+        <div class="checklist" id="dailyList"></div>
+
+        <div class="btn-row">
+
+          <button class="btn primary" id="btnFinishDaily" type="button">我完成了（+1 點）</button>
+
+          <button class="btn" id="btnUncheckAll" type="button">取消勾選</button>
+
+        </div>
+
+      </section>
+
+      <!-- 設定 -->
+
+      <section class="card big hidden" id="panel-settings">
+
+        <h2>設定</h2>
+
+        <p class="desc">本工具只用瀏覽器儲存，不上傳。</p>
+
+        <div class="settings-row">
+
+          <div class="settings-title">顯示</div>
+
+          <div class="btn-row">
+
+            <button class="btn primary" id="btnFontPlus" type="button">字再大一點</button>
+
+            <button class="btn" id="btnFontReset" type="button">字體還原</button>
+
+          </div>
+
+          <p class="tiny">提示：如果你覺得「全都很大」，就按「字體還原」。</p>
+
+        </div>
+
+        <div class="settings-row">
+
+          <div class="settings-title">資料</div>
+
+          <button class="btn danger" id="btnClearAll" type="button">清空全部資料</button>
+
+          <p class="tiny">會清掉：年齡、最後一句、點數、字體大小。</p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+
+    <span>徽章：尚未解鎖</span>　|　<span>累積 <span id="footerPoints">0</span> 點</span>
+
+  </footer>
+
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
