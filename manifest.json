@@ -1,0 +1,25 @@
+{
+  "name": "幸福教養｜模組1｜大人先穩",
+  "short_name": "幸福教養M1",
+  "description": "大人先穩：急救 × 錦囊 × 每日微練功（可加到主畫面使用）",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#b58b54",
+  "background_color": "#fbf6e9",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
